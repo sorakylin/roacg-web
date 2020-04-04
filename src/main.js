@@ -1,18 +1,13 @@
 import Vue from 'vue'
-import App from 'src/App.vue'
+import App from './App.vue'
 import router from './router'
 import store from './store'
-import {
-  Button,
-  Layout,
-  Icon,
-} from 'ant-design-vue';
 
-Vue.component(Button.name, Button);
-Vue.component(Icon.name, Icon);
-Vue.component(Layout.name, Layout);
+import '@/core/component_use'
+import '@/core/layout_use'
 
 Vue.config.productionTip = false
+
 
 new Vue({
   router,
