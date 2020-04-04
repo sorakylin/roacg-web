@@ -38,8 +38,15 @@ module.exports = {
     extract: true, // 是否使用css分离插件 ExtractTextPlugin
     sourceMap: false, // 开启 CSS source maps?
     loaderOptions: {
-      css: {}, // 这里的选项会传递给 css-loader
-      postcss: {} // 这里的选项会传递给 postcss-loader
+      //https://github.com/ant-design/ant-motion/issues/44 TODO 2020-0404 修复antd的陨石坑，操
+      less: {
+        javascriptEnabled: true,
+      },
+      // css: {
+      //   javascriptEnabled: true
+      // }, // 这里的选项会传递给 css-loader
+      // postcss: {} // 这里的选项会传递给 postcss-loader
+
     }, // css预设器配置项 详见https://cli.vuejs.org/zh/config/#css-loaderoptions
     modules: false // 启用 CSS modules for all css / pre-processor files.
   },
