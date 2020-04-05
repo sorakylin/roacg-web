@@ -1,7 +1,7 @@
 
 <template>
   <default-layout>
-    这是内容~
+    <div>这是内容~</div>
   </default-layout>
 </template>
 
@@ -11,4 +11,5 @@ export default {};
 </script>
 
 <style lang="less">
+
 </style>

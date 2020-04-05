@@ -5,9 +5,7 @@
     <ro-header />
 
     <!-- 内容 -->
-    <a-layout-content
-      :style="{ height: '100%', margin: '24px 24px 0', paddingTop: fixedHeader ? '64px' : '0' }"
-    >
+    <a-layout-content class="ro-m-content">
       <slot></slot>
     </a-layout-content>
 
@@ -23,14 +21,14 @@ import RoFooter from "@/components/RoFooter/RoFooter";
 
 export default {
   name: "DefaultLayout",
-  components: { RoHeader, RoFooter },
-  data() {
-    return {
-    }
-  }
+  components: { RoHeader, RoFooter }
 };
 </script>
 
 <style lang="less">
+.ro-m-content {
+  min-height: 640px;
+  background-color: white;
+}
 </style>
 

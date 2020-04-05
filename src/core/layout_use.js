@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import DefaultLayout from '../layout'
-
-console.log(DefaultLayout)
+import DefaultLayout from '../layout/DefaultLayout'
 
 Vue.component(DefaultLayout.name, DefaultLayout);
+
