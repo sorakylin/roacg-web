@@ -2,15 +2,42 @@
   <div>
     <a-row class="m-ro-header">
       <a-col :span="8">
-        <a-menu mode="horizontal" :selectable="false">
+        <a-menu mode="horizontal" :selectable="false" class="m-ro-header-left-tab">
           <a-menu-item key="home">
             <a-icon type="home" />首页
           </a-menu-item>
+          <a-menu-item key="tc">翻译协同</a-menu-item>
+          <a-menu-item key="bbs" disabled>讨论</a-menu-item>
+          <a-menu-item key="db" disabled>资料库</a-menu-item>
         </a-menu>
       </a-col>
 
-      <a-col :span="12"></a-col>
-      <a-col :span="4"></a-col>
+      <a-col :span="10"></a-col>
+
+      <!-- 右上角个人信息相关 -->
+      <a-col :span="6">
+        <a-menu mode="horizontal" :selectable="false" class="m-ro-header-right-tab">
+          <!-- 头像 -->
+          <a-dropdown overlayClassName="ro-my-info-tab">
+            <a-avatar :size="32" icon="user" class="ro-my-info" />
+            <a-menu slot="overlay">
+              <a-menu-item>
+                <a href="javascript:;">
+                  <a-icon type="user" />个人中心
+                </a>
+              </a-menu-item>
+              <a-menu-item>
+                <a href="javascript:;">
+                  <a-icon type="logout" />退出
+                </a>
+              </a-menu-item>
+            </a-menu>
+          </a-dropdown>
+
+          <a-menu-item key="message">消息</a-menu-item>
+          <a-menu-item key="suggestions">建议·报错</a-menu-item>
+        </a-menu>
+      </a-col>
     </a-row>
 
     <!-- 首页上边放个大图片, 更显大气， 但是现在没有合适的素材 先隐藏掉 -->
@@ -22,7 +49,9 @@
 <script>
 export default {
   name: "RoHeader",
-  data() {},
+  data() {
+    return {};
+  },
   created() {}
 };
 </script>
@@ -61,6 +90,11 @@ export default {
   align-items: flex-start;
   -ms-flex-pack: justify;
   justify-content: space-between;
+
+  //导航栏靠右
+  .m-ro-header-right-tab {
+    text-align: right;
+  }
 }
 
 .top-header-img {
@@ -69,5 +103,18 @@ export default {
   height: 106px;
   background: url(http://i0.hdslb.com/bfs/space/cf68a78f0e56cd53b3192b8df22b8496f73452a0.png@2200w_400h_1o.webp)
     no-repeat;
+}
+
+.ro-my-info-tab {
+  width: 280px;
+
+  & > ul > li {
+    padding: 8px 23px;
+  }
+}
+
+.ro-my-info {
+  cursor: pointer;
+  margin-right: 16px;
 }
 </style>
