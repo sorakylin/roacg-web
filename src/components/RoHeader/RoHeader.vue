@@ -18,7 +18,7 @@
       <a-col :span="6">
         <a-menu mode="horizontal" :selectable="false" class="m-ro-header-right-tab">
           <!-- 头像 -->
-          <a-dropdown overlayClassName="ro-my-info-tab">
+          <a-dropdown overlayClassName="ro-my-info-tab" placement="topCenter">
             <a-avatar :size="32" icon="user" class="ro-my-info" />
             <a-menu slot="overlay">
               <a-menu-item>

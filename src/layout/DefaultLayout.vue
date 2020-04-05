@@ -27,7 +27,7 @@ export default {
 
 <style lang="less">
 .ro-m-content {
-  min-height: 640px;
+  min-height: 980px;
   background-color: white;
 }
 </style>

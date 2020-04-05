@@ -38,7 +38,8 @@ import {
     Skeleton,
     Popconfirm,
     message,
-    notification
+    notification,
+    Carousel
 } from 'ant-design-vue'
 
 Vue.use(ConfigProvider)
@@ -79,6 +80,7 @@ Vue.use(Progress)
 Vue.use(Skeleton)
 Vue.use(Popconfirm)
 Vue.use(notification)
+Vue.use(Carousel)
 
 Vue.prototype.$confirm = Modal.confirm
 Vue.prototype.$message = message
