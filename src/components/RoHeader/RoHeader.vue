@@ -4,9 +4,13 @@
       <a-col :span="8">
         <a-menu mode="horizontal" :selectable="false" class="m-ro-header-left-tab">
           <a-menu-item key="home">
-            <a-icon type="home" />首页
+            <router-link to="/">
+              <a-icon type="home" />首页
+            </router-link>
           </a-menu-item>
-          <a-menu-item key="tc">翻译协同</a-menu-item>
+          <a-menu-item key="tc">
+            <router-link to="/tc">翻译协同</router-link>
+          </a-menu-item>
           <a-menu-item key="bbs" disabled>讨论</a-menu-item>
           <a-menu-item key="db" disabled>资料库</a-menu-item>
         </a-menu>
