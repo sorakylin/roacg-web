@@ -28,7 +28,26 @@
 import TcTeamsApi from "@/api/tc/TcTeamsApi";
 
 export default {
-  name: "TcSquare"
+  name: "TcSquare",
+  data() {
+    return {};
+  },
+  created() {
+    TcTeamsApi.findNewlyCreatedTeams()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    TcTeamsApi.findMostActiveTeams()
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 };
 </script>
 

@@ -5,7 +5,7 @@ const baseURL = process.env.VUE_APP_APIURL;
 
 //默认的基础配置 
 const axiosBaseConfig = {
-    baseURL: process.env.VUE_APP_APIURL,
+    baseURL: baseURL,
     timeout: 5000,
 
 }
@@ -38,7 +38,7 @@ class TcApi {
 
         // Object.assign 后面的属性覆盖前面的属性
         let config = Object.assign({}, axiosBaseConfig, {
-            baseURL: axiosBaseConfig.baseURL + '/tc'
+            baseURL: baseURL + '/tc'
         });
 
         return axios.create(config);
@@ -47,7 +47,7 @@ class TcApi {
     static token() {
 
         let config = Object.assign({}, axiosBaseConfig, {
-            baseURL: axiosBaseConfig.baseURL + '/tc',
+            baseURL: baseURL + '/tc',
             headers: {
                 "Authorization": ""
             }
