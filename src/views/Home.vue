@@ -1,38 +1,42 @@
 
 <template>
   <default-layout>
-    <div id="ro-home-warp">
-      <!-- 第一层 内容和讯息-->
-      <a-row type="flex" :gutter="[8,8]">
-        <!-- 轮播图 -->
-        <a-col :span="12">
-          <!-- border 没用 艹 -->
-          <a-carousel autoplay style="border-radius: 5px">
-            <div class="top-home-slide">
-              <h3>1</h3>
-            </div>
-            <div class="top-home-slide">
-              <h3>2</h3>
-            </div>
-            <div class="top-home-slide">
-              <h3>3</h3>
-            </div>
-          </a-carousel>
-        </a-col>
+    <div style="background-color: white; min-height:980px">
+      <div id="ro-home-warp">
+        <!-- 第一层 内容和讯息-->
+        <a-row type="flex" :gutter="[8,8]">
+          <!-- 轮播图 -->
+          <a-col :span="12">
+            <!-- border 没用 艹 -->
+            <a-carousel autoplay style="border-radius: 5px">
+              <div class="top-home-slide">
+                <h3>1</h3>
+              </div>
+              <div class="top-home-slide">
+                <h3>2</h3>
+              </div>
+              <div class="top-home-slide">
+                <h3>3</h3>
+              </div>
+            </a-carousel>
+          </a-col>
 
-        <!-- 讯息 -->
-        <a-col :span="12">
-          <a-card style="height: 57%"></a-card>
-          <div style="height: 3%"></div>
-          <a-card style="height: 40%"></a-card>
-        </a-col>
-      </a-row>
+          <!-- 讯息 -->
+          <a-col :span="12">
+            <a-card style="height: 57%"></a-card>
+            <div style="height: 3%"></div>
+            <a-card style="height: 40%"></a-card>
+          </a-col>
+        </a-row>
 
-      <!-- 第二层 不知道放啥 先放着 -->
-      <a-card
-        :loading="true"
-        style="height: 360px; margin-top: 16px;padding: 24px;"
-      >whatever content</a-card>
+        <!-- 第二层 不知道放啥 先放着 -->
+        <a-card
+          :loading="true"
+          style="height: 360px; margin-top: 16px;padding: 24px;"
+        >whatever content</a-card>
+      </div>
+
+      
     </div>
   </default-layout>
 </template>
