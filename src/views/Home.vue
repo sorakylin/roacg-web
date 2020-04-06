@@ -1,20 +1,20 @@
 
 <template>
   <default-layout>
-    <div class="ro-home-warp">
+    <div id="ro-home-warp">
       <!-- 第一层 内容和讯息-->
       <a-row type="flex" :gutter="[8,8]">
         <!-- 轮播图 -->
         <a-col :span="12">
           <!-- border 没用 艹 -->
           <a-carousel autoplay style="border-radius: 5px">
-            <div>
+            <div class="top-home-slide">
               <h3>1</h3>
             </div>
-            <div>
+            <div class="top-home-slide">
               <h3>2</h3>
             </div>
-            <div>
+            <div class="top-home-slide">
               <h3>3</h3>
             </div>
           </a-carousel>
@@ -42,8 +42,8 @@
 export default {};
 </script>
 
-<style lang="less" scope>
-.ro-home-warp {
+<style lang="less" scoped>
+#ro-home-warp {
   width: 1414px;
   margin: 0 auto;
   padding-top: 16px;
@@ -55,18 +55,16 @@ export default {};
   @media screen and (max-width: 1654px) {
     width: 1198px;
   }
-}
 
-//FIXME 测试用; 撑个页面骨架
-.ant-carousel {
-  .slick-slide {
+  //FIXME 测试用; 撑个页面骨架
+  .top-home-slide {
     text-align: center;
     height: 228px;
     line-height: 160px;
     background: #364d79;
     overflow: hidden;
   }
-  .slick-slide h3 {
+  .top-home-slide h3 {
     color: #fff;
   }
 }

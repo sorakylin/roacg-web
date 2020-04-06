@@ -11,7 +11,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .ro-footer {
   text-align: center;
   align-content: center;

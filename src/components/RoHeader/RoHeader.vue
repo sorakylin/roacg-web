@@ -67,7 +67,7 @@ export default {
 </script>
 
 
-<style lang="less" scope>
+<style lang="less" scoped>
 //去掉几个 antd 的默认样式
 .ant-menu-horizontal {
   .ant-menu-item:hover,

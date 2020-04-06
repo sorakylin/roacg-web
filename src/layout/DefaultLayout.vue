@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .ro-m-content {
   min-height: 980px;
   background-color: white;

@@ -34,13 +34,11 @@ class RoApi {
 //tc
 class TcApi {
 
-    url = axiosBaseConfig.baseURL + '/tc';
-
     static public() {
 
         // Object.assign 后面的属性覆盖前面的属性
         let config = Object.assign({}, axiosBaseConfig, {
-            baseURL: url
+            baseURL: axiosBaseConfig.baseURL + '/tc'
         });
 
         return axios.create(config);
@@ -49,7 +47,7 @@ class TcApi {
     static token() {
 
         let config = Object.assign({}, axiosBaseConfig, {
-            baseURL: url,
+            baseURL: axiosBaseConfig.baseURL + '/tc',
             headers: {
                 "Authorization": ""
             }
