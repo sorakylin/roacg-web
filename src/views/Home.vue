@@ -47,17 +47,13 @@ export default {};
   width: 1414px;
   margin: 0 auto;
   padding-top: 16px;
-}
 
-@media screen and (max-width: 1654px) {
-  .ro-home-warp {
-    width: 1198px;
-  }
-}
-
-@media screen and (max-width: 1438px) {
-  .ro-home-warp {
+  @media screen and (max-width: 1438px) {
     width: 999px;
+  }
+
+  @media screen and (max-width: 1654px) {
+    width: 1198px;
   }
 }
 

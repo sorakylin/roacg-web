@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  publicPath: './', // 基本路径
+  publicPath: '/', // 基本路径
   outputDir: 'dist', // 输出文件目录
   assetsDir: "assets",
   lintOnSave: false, // eslint-loader 是否在保存的时候检查
@@ -57,7 +57,7 @@ module.exports = {
   devServer: {
     open: process.platform === 'darwin',
     host: '0.0.0.0', // 允许外部ip访问
-    port: 8022, // 端口
+    port: process.env.VUE_APP_HOST, // 端口
     https: false, // 启用https
     overlay: {
       warnings: true,

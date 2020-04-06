@@ -22,7 +22,7 @@
       <a-col :span="6">
         <a-menu mode="horizontal" :selectable="false" class="m-ro-header-right-tab">
           <!-- 头像 -->
-          <a-dropdown overlayClassName="ro-my-info-tab" placement="topCenter">
+          <a-dropdown v-if="false" overlayClassName="ro-my-info-tab" placement="topCenter">
             <a-avatar :size="32" icon="user" class="ro-my-info" />
             <a-menu slot="overlay">
               <a-menu-item>
@@ -36,9 +36,15 @@
                 </a>
               </a-menu-item>
             </a-menu>
+
+            <a-menu-item key="message">消息</a-menu-item>
           </a-dropdown>
 
-          <a-menu-item key="message">消息</a-menu-item>
+          <template v-else>
+            <a-menu-item key="login">登陆</a-menu-item>
+            <a-menu-item key="register">注册</a-menu-item>
+          </template>
+          
           <a-menu-item key="suggestions">建议·报错</a-menu-item>
         </a-menu>
       </a-col>
