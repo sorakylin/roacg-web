@@ -21,11 +21,7 @@ module.exports = {
       resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-          '@': path.join(__dirname, 'src'),
-          'base': path.resolve(__dirname, './src/base'),
-          'api': path.resolve(__dirname, './src/api'),
-          'common': path.resolve(__dirname, './src/common'),
-          'components': path.resolve(__dirname, './src/components')
+          '@': path.join(__dirname, 'src')
         } // 别名配置
       }
     })
