@@ -15,13 +15,25 @@
             :defaultSelectedKeys="['square']"
             style="width:600px; margin: 0 auto"
           >
-            <a-menu-item key="square" class="tc-menu-item">广场</a-menu-item>
-            <a-menu-item key="item-list" class="tc-menu-item">项目集</a-menu-item>
-            <a-menu-item key="my" class="tc-menu-item" :disabled="true">我的</a-menu-item>
-            <a-menu-item key="info" class="tc-menu-item">关于</a-menu-item>
+            <a-menu-item key="square" class="tc-menu-item">
+              <router-link to="/tc">广场</router-link>
+            </a-menu-item>
+            <a-menu-item key="item-list" class="tc-menu-item">
+              <router-link to="/tc/item-list">项目中心</router-link>
+            </a-menu-item>
+            <a-menu-item key="teams" class="tc-menu-item">
+              <router-link to="/tc/teams">组织</router-link>
+            </a-menu-item>
+            <a-menu-item key="mytc" class="tc-menu-item" :disabled="true">
+              <router-link to="/tc/mytc">我的</router-link>
+            </a-menu-item>
+            <a-menu-item key="tcinfo" class="tc-menu-item">
+              <router-link to="/tc/tcinfo">关于</router-link>
+            </a-menu-item>
           </a-menu>
         </a-row>
-        <a-row type="flex" :gutter="[8,8]">
+        <router-view></router-view>
+        <!-- <a-row type="flex" :gutter="[8,8]">
           <a-col :span="17">
             <a-card :bordered="true" style="width: 90%;margin-left: 20px">
               <h3>平台数据</h3>
@@ -42,7 +54,7 @@
               </div>
             </a-card>
           </a-col>
-        </a-row>
+        </a-row>-->
       </div>
     </div>
   </default-layout>
@@ -50,19 +62,14 @@
 
 
 <script>
-import TcHomeApi from "@/api/tc/TcHomeApi";
+import TcTeamsApi from "@/api/tc/TcTeamsApi";
 
-export default {};
+export default {
+  name: "TcHome"
+};
 </script>
 
 <style lang="less" scoped>
-#tc-menu {
-  .tc-menu-item {
-    text-align: center;
-    width: 15%;
-  }
-}
-
 #tc-home-warp {
   background-color: white;
   width: 1198px;
@@ -76,6 +83,11 @@ export default {};
   #tc-menu {
     margin-top: 25px;
     margin-bottom: 25px;
+
+    .tc-menu-item {
+      text-align: center;
+      width: 15%;
+    }
   }
 }
 </style>

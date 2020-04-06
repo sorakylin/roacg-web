@@ -3,14 +3,29 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     component: () => import('@/views/Home')
   },
   {
     path: '/tc',
-    component: () => import('@/views/tc/TranslationCollaborationHome')
+    component: () => import('@/views/tc/TranslationCollaborationHome'),
+    children: [{
+      path: '',
+      component: () => import('@/views/tc/TcSquare')
+    }, {
+      path: 'tcinfo',
+      component: () => import('@/views/tc/TcInfo')
+    }, {
+      path: 'item-list',
+      component: () => import('@/views/tc/TcItemList')
+    }, {
+      path: 'mytc',
+      component: () => import('@/views/tc/TcMy')
+    }, {
+      path: 'teams',
+      component: () => import('@/views/tc/TcTeams')
+    }]
   },
 ]
 
