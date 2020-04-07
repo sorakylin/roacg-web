@@ -41,10 +41,14 @@
           </a-dropdown>
 
           <template v-else>
-            <a-menu-item key="login">登陆</a-menu-item>
-            <a-menu-item key="register">注册</a-menu-item>
+            <a-menu-item key="login">
+              <a @click="loginPageRedirect()">登陆</a>
+            </a-menu-item>
+            <a-menu-item key="register">
+              <a @click="registerPageRedirect()">注册</a>
+            </a-menu-item>
           </template>
-          
+
           <a-menu-item key="suggestions">建议·报错</a-menu-item>
         </a-menu>
       </a-col>
@@ -62,7 +66,17 @@ export default {
   data() {
     return {};
   },
-  created() {}
+  created() {},
+  methods: {
+    loginPageRedirect: () => {
+      // console.log(process.env.VUE_APP_BASE_URL);
+      window.location.href = '/login'
+    },
+    registerPageRedirect: () => {
+      // console.log(process.env.VUE_APP_BASE_URL);
+      window.location.href = '/register'
+    }
+  }
 };
 </script>
 

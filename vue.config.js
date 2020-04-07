@@ -1,5 +1,8 @@
 const path = require('path')
 
+process.env.VUE_APP_BASE_URL = `${process.env.VUE_APP_HOST}:${process.env.VUE_APP_PORT}`
+
+
 module.exports = {
   publicPath: '/', // 基本路径
   outputDir: 'dist', // 输出文件目录
@@ -52,8 +55,8 @@ module.exports = {
   // webpack-dev-server 相关配置
   devServer: {
     open: process.platform === 'darwin',
-    host: '0.0.0.0', // 允许外部ip访问
-    port: process.env.VUE_APP_HOST, // 端口
+    host: process.env.VUE_APP_HOST, // 允许外部ip访问
+    port: process.env.VUE_APP_PORT, // 端口
     https: false, // 启用https
     overlay: {
       warnings: true,
