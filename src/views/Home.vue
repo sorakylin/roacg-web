@@ -35,8 +35,6 @@
           style="height: 360px; margin-top: 16px;padding: 24px;"
         >whatever content</a-card>
       </div>
-
-      
     </div>
   </default-layout>
 </template>
@@ -52,12 +50,12 @@ export default {};
   margin: 0 auto;
   padding-top: 16px;
 
-  @media screen and (max-width: 1438px) {
-    width: 999px;
-  }
-
   @media screen and (max-width: 1654px) {
     width: 1198px;
+  }
+
+  @media screen and (max-width: 1438px) {
+    width: 999px;
   }
 
   //FIXME 测试用; 撑个页面骨架

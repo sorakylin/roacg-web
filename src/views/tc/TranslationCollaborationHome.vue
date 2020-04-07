@@ -2,12 +2,7 @@
   <!-- 背景色变灰色 -->
   <default-layout>
     <div id="tc-content">
-      <div
-        id="tc-top-img"
-        style="height: 120px; border: 1px solid #e8e8e8;background-color: white;z-index: 11;position: relative;"
-      >
-        <a-empty description />
-      </div>
+      <top-header-img></top-header-img>
       <div id="tc-home-warp">
         <a-row id="tc-menu">
           <a-menu
@@ -64,8 +59,11 @@
 <script>
 import TcTeamsApi from "@/api/tc/TcTeamsApi";
 
+import TopHeaderImg from "@/components/ImgTemplate/TopHeaderImg";
+
 export default {
-  name: "TcHome"
+  name: "TcHome",
+  components: { TopHeaderImg }
 };
 </script>
 
