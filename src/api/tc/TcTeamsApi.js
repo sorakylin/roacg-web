@@ -7,12 +7,13 @@ const authReq = TcApi.token();
 
 
 //查询最新创建的的团队们
-let findNewlyCreatedTeams = function () {
+const findNewlyCreatedTeams = function () {
     return req.get('/tms/newly-created');
 }
 
 //查询最近活跃的项目组们
-let findMostActiveTeams = function () {
+
+const findMostActiveTeams = function () {
     return req.get('/tms/active-most');
 }
 

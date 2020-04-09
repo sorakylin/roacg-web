@@ -1,7 +1,7 @@
 
 <template>
   <default-layout>
-    <div style="background-color: white; min-height:880px">
+    <div style="background-color: white; min-height:980px">
       <div id="ro-home-warp">
         <!-- 第一层 内容和讯息-->
         <a-row type="flex" :gutter="[8,8]">
