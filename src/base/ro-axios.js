@@ -21,7 +21,7 @@ class RoApi {
 
         let config = Object.assign({}, axiosBaseConfig, {
             headers: {
-                "Authorization": ""
+                "Authorization": sessionStorage.getItem('ac')
             }
         });
 
@@ -49,7 +49,7 @@ class TcApi {
         let config = Object.assign({}, axiosBaseConfig, {
             baseURL: baseURL + '/tc',
             headers: {
-                "Authorization": ""
+                "Authorization": sessionStorage.getItem('ac')
             }
         });
 

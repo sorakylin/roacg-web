@@ -4,7 +4,14 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const user = {
-  state: {},
+  state: { user: undefined },
+  getter: {
+    //返回方法, 不会缓存
+    loginStatus: (state) => () => {
+
+      return false;
+    }
+  },
   mutations: {},
   actions: {}
 }

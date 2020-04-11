@@ -97,8 +97,7 @@ export default {
               return;
             }
             //登录成功处理
-            UserHelper.loginSuccess(res.data);
-            window.location.href = "/";
+            UserHelper.loginSuccess(res.data,res.headers);
           })
           .catch(err => {
             setTimeout(() => (this.loginLoading = false), 500);
