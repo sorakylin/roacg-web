@@ -19,7 +19,7 @@
             <a-menu-item key="teams" class="tc-menu-item">
               <router-link to="/tc/teams">组织</router-link>
             </a-menu-item>
-            <a-menu-item key="mytc" class="tc-menu-item" :disabled="true">
+            <a-menu-item key="mytc" class="tc-menu-item" :disabled="!this.$store.getters.loginStatus()">
               <router-link to="/tc/mytc">我的</router-link>
             </a-menu-item>
             <a-menu-item key="tcinfo" class="tc-menu-item">

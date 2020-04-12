@@ -7,7 +7,10 @@ const req = RoApi.public();
 const authReq = RoApi.token();
 
 const login = (username, password) => {
-    return req.post('/tms/newly-created');
+    return req.post('/login', {
+        "username": username,
+        "password": password
+    });
 }
 
 export default {

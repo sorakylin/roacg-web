@@ -22,7 +22,11 @@
       <a-col :span="6">
         <a-menu mode="horizontal" :selectable="false" class="m-ro-header-right-tab">
           <!-- 头像 -->
-          <a-dropdown v-if="false" overlayClassName="ro-my-info-tab" placement="topCenter">
+          <a-dropdown
+            v-if="this.$store.getters.loginStatus()"
+            overlayClassName="ro-my-info-tab"
+            placement="topCenter"
+          >
             <a-avatar :size="32" icon="user" class="ro-my-info" />
             <a-menu slot="overlay">
               <a-menu-item>
@@ -30,10 +34,8 @@
                   <a-icon type="user" />个人中心
                 </a>
               </a-menu-item>
-              <a-menu-item>
-                <a href="javascript:;">
-                  <a-icon type="logout" />退出
-                </a>
+              <a-menu-item key="logout">
+                <a>退出</a>
               </a-menu-item>
             </a-menu>
 
@@ -66,16 +68,18 @@ export default {
   data() {
     return {};
   },
-  created() {},
+  created() {
+  },
   methods: {
     loginPageRedirect: () => {
       // console.log(process.env.VUE_APP_BASE_URL);
-      window.location.href = '/login'
+      window.location.href = "/login";
     },
     registerPageRedirect: () => {
       // console.log(process.env.VUE_APP_BASE_URL);
-      window.location.href = '/register'
-    }
+      window.location.href = "/register";
+    },
+    logout: () => {}
   }
 };
 </script>

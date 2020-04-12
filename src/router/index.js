@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,9 @@ const routes = [{
       component: () => import('@/views/tc/TcItemList')
     }, {
       path: 'mytc',
+      meta: {
+        requireAuth: true
+      },
       component: () => import('@/views/tc/TcMy')
     }, {
       path: 'teams',
@@ -40,5 +44,35 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+
+// 在页面刷新时，重新赋值token
+if (sessionStorage.getItem('token')) {
+
+  store.commit('setUser', {
+    token: sessionStorage.getItem('token'),
+    tokenExpire: parseInt(sessionStorage.getItem('tokenExpire')),
+    ...JSON.parse(sessionStorage.getItem('ru'))
+  })
+}
+
+
+router.beforeEach((to, from, next) => {
+
+  //这里的requireAuth为路由中定义的 meta:{requireAuth:true}  如果不是 true 则直接放行
+  if (!to.matched.some(r => r.meta.requireAuth)) {
+    next();
+    return;
+  }
+
+  //已登录放行
+  if (store.getters.loginStatus()) {
+    next();
+  } else { //重定向到 login
+    window.location.href = "/";
+  }
+
+})
+
 
 export default router

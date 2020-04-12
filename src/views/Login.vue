@@ -66,7 +66,7 @@ export default {
       rules: {
         username: [
           // { required: 3, message: "用户名长度不正确 ", trigger: "blur" }
-          { required: true, message: "用户名为必填项 ", trigger: "blur" },
+          { required: true, message: "用户名为必填项 ", trigger: "blur" }
           // { min: 3, message: "用户名最短需要3个字符", trigger: "blur" },
           // { max: 14, message: "用户名最长14个英文或7个汉字", trigger: "blur" }
         ],
@@ -92,12 +92,12 @@ export default {
           .then(res => {
             setTimeout(() => (this.loginLoading = false), 500);
 
-            if (!res.success) {
+            if (!res.data.success) {
               this.$message.error(res.message);
               return;
             }
             //登录成功处理
-            UserHelper.loginSuccess(res.data,res.headers);
+            UserHelper.loginSuccess(res.data.data, res.headers);
           })
           .catch(err => {
             setTimeout(() => (this.loginLoading = false), 500);
