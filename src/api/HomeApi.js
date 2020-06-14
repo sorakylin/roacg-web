@@ -1,13 +1,10 @@
 import {
-    RoApi
+    roApi
 } from '@/base/ro-axios'
 
 
-const req = RoApi.public();
-const authReq = RoApi.token();
-
 const login = (username, password) => {
-    return req.post('/login', {
+    return roApi.post('/login', {
         "username": username,
         "password": password
     });

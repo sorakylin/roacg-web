@@ -97,7 +97,7 @@ export default {
               return;
             }
             //登录成功处理
-            UserHelper.loginSuccess(res.data.data, res.headers);
+            UserHelper.tokenSetting(res.data.data, res.headers);
           })
           .catch(err => {
             setTimeout(() => (this.loginLoading = false), 500);
