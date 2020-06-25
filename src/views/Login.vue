@@ -96,8 +96,11 @@ export default {
               this.$message.error(res.message);
               return;
             }
+
             //登录成功处理
-            UserHelper.tokenSetting(res.data.data, res.headers);
+            // UserHelper.tokenSetting(res.data.data, res.headers);
+            //响应拦截器里截取到 set-token 头就会设置到浏览器储存里边去， 所以这里只要做个跳转
+            window.location.href = "/";
           })
           .catch(err => {
             setTimeout(() => (this.loginLoading = false), 500);

@@ -5,8 +5,6 @@ const tokenSetting = (user, resHeader) => {
     sessionStorage.setItem('token', resHeader['set-token']);
     sessionStorage.setItem('tokenExpire', resHeader['set-token-expire']);
     sessionStorage.setItem('ru', JSON.stringify(user));
-
-    window.location.href = "/";
 }
 
 const getToken = () => {
