@@ -8,20 +8,24 @@
           <a-menu
             mode="horizontal"
             :defaultSelectedKeys="['square']"
-            style="width:600px; margin: 0 auto"
+            style="width:90%; margin: 0 auto"
           >
             <a-menu-item key="square" class="tc-menu-item">
               <router-link to="/tc">广场</router-link>
             </a-menu-item>
-            <a-menu-item key="item-list" class="tc-menu-item">
-              <router-link to="/tc/item-list">项目中心</router-link>
-            </a-menu-item>
-            <a-menu-item key="teams" class="tc-menu-item">
-              <router-link to="/tc/teams">组织</router-link>
-            </a-menu-item>
-            <a-menu-item key="mytc" class="tc-menu-item" :disabled="!this.$store.getters.loginStatus()">
+            <a-menu-item
+              key="mytc"
+              class="tc-menu-item"
+              :disabled="!this.$store.getters.loginStatus()"
+            >
               <router-link to="/tc/mytc">我的</router-link>
             </a-menu-item>
+            <!-- <a-menu-item key="item-list" class="tc-menu-item">
+              <router-link to="/tc/item-list">项目中心</router-link>
+            </a-menu-item>-->
+            <!-- <a-menu-item key="teams" class="tc-menu-item">
+              <router-link to="/tc/teams">组织</router-link>
+            </a-menu-item>-->
             <a-menu-item key="tcinfo" class="tc-menu-item">
               <router-link to="/tc/tcinfo">关于</router-link>
             </a-menu-item>
@@ -79,7 +83,7 @@ export default {
   }
 
   #tc-menu {
-    margin-top: 25px;
+    // margin-top: 10px;
     margin-bottom: 25px;
 
     .tc-menu-item {

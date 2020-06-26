@@ -47,12 +47,12 @@ const router = new VueRouter({
 
 
 // 在页面刷新时，重新赋值token
-if (sessionStorage.getItem('token')) {
+if (localStorage.getItem('token')) {
 
   store.commit('setUser', {
-    token: sessionStorage.getItem('token'),
-    tokenExpire: parseInt(sessionStorage.getItem('tokenExpire')),
-    ...JSON.parse(sessionStorage.getItem('ru'))
+    token: localStorage.getItem('token'),
+    tokenExpire: parseInt(localStorage.getItem('tokenExpire')),
+    ...JSON.parse(localStorage.getItem('ru'))
   })
 }
 

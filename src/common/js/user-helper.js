@@ -2,17 +2,17 @@ import store from '@/store'
 
 //设置Token
 const tokenSetting = (user, resHeader) => {
-    sessionStorage.setItem('token', resHeader['set-token']);
-    sessionStorage.setItem('tokenExpire', resHeader['set-token-expire']);
-    sessionStorage.setItem('ru', JSON.stringify(user));
+    localStorage.setItem('token', resHeader['set-token']);
+    localStorage.setItem('tokenExpire', resHeader['set-token-expire']);
+    localStorage.setItem('ru', JSON.stringify(user));
 }
 
 const getToken = () => {
-    let token = sessionStorage.getItem('token');
+    let token = localStorage.getItem('token');
 
     if (!token) return undefined;
 
-    let expire = sessionStorage.getItem('tokenExpire');
+    let expire = localStorage.getItem('tokenExpire');
 
     if (Date.now() > expire) return undefined;
 
@@ -22,9 +22,9 @@ const getToken = () => {
 
 //退出登录
 const logout = () => {
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('tokenExpire');
-    sessionStorage.removeItem('ru');
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpire');
+    localStorage.removeItem('ru');
 
     window.location.href = "/";
 }
