@@ -20,9 +20,43 @@
     <a-col :span="16" style="height: 100%; border: 1px solod red">
       <a-card size="small" title="我的团队" :bordered="false">
         <a slot="extra" href="#" @click="showCreateTeamModal">创建团队</a>
-        <p>card content</p>
-        <p>card content</p>
-        <p>card content</p>
+
+        <a-col :span="8" v-for="team in this.myTeams" :key="team.teamId">
+          <!-- 遍历我参与的所有项目, 展示 -->
+          <a-popover placement="right">
+            <!-- 鼠标移上来的tip框 -->
+            <template slot="title">
+              <span>{{team.teamName}}</span>
+            </template>
+            <template slot="content">
+              <div style="width: 240px;">{{team.teamProfile}}</div>
+            </template>
+
+            <!-- 项目展示内容 -->
+            <a-card hoverable style="width: 240px;" :bodyStyle="{padding: '14px'}">
+              <img
+                slot="cover"
+                :alt="team.teamName"
+                src="http://i2.hdslb.com/bfs/archive/066abed3b07c383ba0ab5e3615aef68865454c5e.jpg@412w_232h_1c_100q.jpg"
+                height="80px"
+              />
+              <a-card-meta>
+                <template slot="title">
+                  <a-tag v-if="team.myRole==1" color="red">组长</a-tag>
+                  <a-tag v-if="team.myRole==2" color="blue">元老</a-tag>
+                  <a-tag v-if="team.myRole==3">组员</a-tag>
+                  {{team.teamName}}
+                </template>
+                <template slot="description">
+                  <div style="min-height: 42px" class="team-desc">{{team.teamProfile}}</div>
+                </template>
+              </a-card-meta>
+
+              <!-- <a-tag>组员</a-tag> -->
+            </a-card>
+          </a-popover>
+        </a-col>
+        <a-row type="flex" :gutter="[6,6]"></a-row>
       </a-card>
     </a-col>
 
@@ -207,5 +241,13 @@ export default {
   font-weight: 600;
   font-size: 26px;
   line-height: 30px;
+}
+
+.team-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 </style>
