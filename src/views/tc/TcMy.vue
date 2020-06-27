@@ -20,20 +20,23 @@
     <a-col :span="16" style="height: 100%; border: 1px solod red">
       <a-card size="small" title="我的团队" :bordered="false">
         <a slot="extra" href="#" @click="showCreateTeamModal">创建团队</a>
-
+        <!-- 遍历我参与的所有项目, 展示 -->
         <a-col :span="8" v-for="team in this.myTeams" :key="team.teamId">
-          <!-- 遍历我参与的所有项目, 展示 -->
           <a-popover placement="right">
             <!-- 鼠标移上来的tip框 -->
             <template slot="title">
-              <span>{{team.teamName}}</span>
+              <div class="team-box-width">{{team.teamName}}</div>
             </template>
             <template slot="content">
-              <div style="width: 240px;">{{team.teamProfile}}</div>
+              <div class="team-box-width">{{team.teamProfile}}</div>
             </template>
-
-            <!-- 项目展示内容 -->
-            <a-card hoverable style="width: 240px;" :bodyStyle="{padding: '14px'}">
+            <!-- 项目展示内容  点击就跳到详情页面-->
+            <a-card
+              hoverable
+              class="team-box-width"
+              :bodyStyle="{padding: '14px'}"
+              @click="$router.push(`/tc/team-detail/${team.teamId}`)"
+            >
               <img
                 slot="cover"
                 :alt="team.teamName"
@@ -241,6 +244,10 @@ export default {
   font-weight: 600;
   font-size: 26px;
   line-height: 30px;
+}
+
+.team-box-width {
+  width: 240px;
 }
 
 .team-desc {

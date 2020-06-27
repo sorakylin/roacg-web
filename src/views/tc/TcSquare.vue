@@ -35,14 +35,14 @@ export default {
   created() {
     TcTeamsApi.findNewlyCreatedTeams()
       .then(res => {
-        console.log(res);
+        //TODO do...
       })
       .catch(err => {
         console.log(err);
       });
     TcTeamsApi.findMostActiveTeams()
       .then(res => {
-        console.log(res);
+        //TODO do...
       })
       .catch(err => {
         console.log(err);

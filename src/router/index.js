@@ -24,19 +24,16 @@ const routes = [{
       path: 'tcinfo',
       component: () => import('@/views/tc/TcInfo')
     }, {
-      path: 'item-list',
-      component: () => import('@/views/tc/TcItemList')
-    }, {
       path: 'mytc',
       meta: {
         requireAuth: true
       },
       component: () => import('@/views/tc/TcMy')
-    }, {
-      path: 'teams',
-      component: () => import('@/views/tc/TcTeams')
     }]
-  },
+  }, {
+    path: '/tc/team-detail/:teamId',
+    component: () => import('@/views/tc/TcTeamDetail')
+  }
 ]
 
 const router = new VueRouter({
