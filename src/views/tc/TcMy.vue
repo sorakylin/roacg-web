@@ -36,7 +36,21 @@
       :keyboard="false"
       @cancel="handleCreateTeamCancel"
       @create="handleCreateTeamSubmit"
-    >asd</a-modal>
+    >
+      <!-- 创建团队的表单 -->
+      <a-form-model ref="createTeamForm" :model="createTeamFormData" :rules="createTeamFormRules">
+        <a-form-model-item prop="teamName">
+          <a-input v-model="createTeamFormData.teamName" placeholder="请输入团队名" />
+        </a-form-model-item>
+        <a-form-model-item prop="teamProfile">
+          <a-input-password
+            type="textarea"
+            v-model="createTeamFormData.teamProfile"
+            placeholder="团队描述"
+          />
+        </a-form-model-item>
+      </a-form-model>
+    </a-modal>
   </a-row>
 </template>
 
@@ -44,18 +58,24 @@
 <script>
 // 组件
 import TcTeamsApi from "@/api/tc/TcTeamsApi";
+import TcTempApi from "@/api/tc/TcTempApi";
 
 export default {
   name: "TcMy",
   data() {
     return {
       createTeamVisible: false,
+      createTeamFormData: { teamName: "", avatar: "", teamProfile: "" },
+      createTeamFormRules: {
+        teamName: [
+          { required: true, message: "团队名为必填项", trigger: "change" },
+          { min: 3, message: "团队名长度最小为3", trigger: "change" },
+          { max: 16, message: "团队名长度超过限制", trigger: "change" }
+        ]
+      },
       myAllTeamTotal: 0,
       myTeams: []
     };
-  },
-  beforeCreate() {
-    this.form = this.$form.createForm(this, { name: "form_in_modal" });
   },
   created() {
     TcTeamsApi.findMyTeams()
@@ -83,14 +103,18 @@ export default {
       this.createTeamVisible = false;
     },
     handleCreateTeamSubmit() {
-      const form = this.$refs.createTeamForm.form;
-      form.validateFields((err, values) => {
-        if (err) {
-          return;
-        }
-        console.log("Received values of form: ", values);
-        form.resetFields();
-        this.createTeamVisible = false;
+      const form = this.$refs["createTeamForm"];
+      form.validate(valid => {
+        if (!valid) return;
+
+        TcTempApi.createTeam(this.createTeamFormData).then(res => {
+          if (!res.data.success) {//提交失败
+        
+            this.$message.error(res.data.message);
+          }
+          form.resetFields();
+          this.createTeamVisible = false;
+        });
       });
     }
   }
