@@ -8,7 +8,7 @@
           <a-menu
             mode="horizontal"
             :defaultSelectedKeys="['square']"
-            style="width:90%; margin: 0 auto"
+            style="width:90%; margin: 0 auto; border-bottom: 0"
           >
             <a-menu-item key="square" class="tc-menu-item">
               <router-link to="/tc">广场</router-link>
@@ -72,8 +72,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#tc-home-warp {
+#tc-content {
   background-color: white;
+}
+#tc-home-warp {
+  // background-color: white;
   width: 1198px;
   margin: 0 auto;
   padding-top: 16px;
@@ -85,7 +88,7 @@ export default {
   #tc-menu {
     // margin-top: 10px;
     margin-bottom: 25px;
-
+    border-bottom: 1px solid rgb(232, 232, 232);
     .tc-menu-item {
       text-align: center;
       width: 15%;
