@@ -1,5 +1,5 @@
 import {
-    tcApi
+  tcApi
 } from '@/base/ro-axios'
 
 
@@ -11,7 +11,7 @@ import {
  */
 
 const createTeam = function (team) {
-    return tcApi.post("/team", team)
+  return tcApi.post("/team", team)
 }
 
 /**
@@ -19,7 +19,7 @@ const createTeam = function (team) {
  * @param {team} {"teamId": 0,"teamName": "","avatar": "","teamProfile": "","teamDescription": ""}
  */
 const updateTeam = function (team) {
-    return tcApi.put("/team/", team)
+  return tcApi.put("/team/", team)
 }
 
 
@@ -55,12 +55,18 @@ const updateTeam = function (team) {
 }
 */
 const findTeamDetail = function (teamId) {
-    return tcApi.get(`/team/${teamId}`);
+  return tcApi.get(`/team/${teamId}`);
 }
 
+const USER_TESM_ROLE = {
+  TEAM_LEADER: 1, //组长
+  OLD_HEAD: 2, //元老
+  TEAM_MEMBER: 3 //普通组员
+}
 
 export default {
-    createTeam,
-    updateTeam,
-    findTeamDetail
+  createTeam,
+  updateTeam,
+  findTeamDetail,
+  USER_TESM_ROLE
 }

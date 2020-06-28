@@ -32,7 +32,7 @@ const routes = [{
     }]
   }, {
     path: '/tc/team-detail/:teamId',
-    component: () => import('@/views/tc/TcTeamDetail')
+    component: () => import('@/views/tc/team/TcTeamDetail')
   }
 ]
 
