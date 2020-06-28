@@ -32,7 +32,7 @@
             </a-col>
           </a-row>
 
-          <!-- 这里是左边部分的团队菜单 -->
+          <!-- ==================================这里是左边部分的团队菜单  ==================================-->
           <a-card
             :tab-list="teamDetailTab"
             :active-tab-key="tabKey"
@@ -41,10 +41,14 @@
           >
             <a-row v-if="tabKey === 'overview'">overview content</a-row>
             <a-row v-else-if="tabKey === 'people'">people content</a-row>
-            <a-row v-else-if="tabKey === 'project'">project content</a-row>
+            <a-row v-else-if="tabKey === 'project'">
+              <tc-team-detail-project :teamId="team.teamId" :projects="team.projects" />
+            </a-row>
 
             <a slot="tabBarExtraContent" href="#">设置</a>
           </a-card>
+
+          <!-- ==================================左边部分的团队菜单  END ==================================-->
         </a-col>
 
         <!-- 右边主要的瀑布信息流  团队基本信息、人员信息等 -->
@@ -86,8 +90,11 @@
 <script>
 import TcTempApi from "@/api/tc/TcTempApi";
 
+import TcTeamDetailProject from "@/views/tc/team/TcTeamDetailProject";
+
 export default {
   name: "TcTeamDetail",
+  components: { TcTeamDetailProject },
   data() {
     return {
       teamId: this.$route.params.teamId,
