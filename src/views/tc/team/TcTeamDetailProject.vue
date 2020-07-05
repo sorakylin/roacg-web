@@ -28,7 +28,7 @@
       >
         <!-- 创建项目时提交的表单 -->
         <a-form-model
-          ref="createTeamForm"
+          ref="createProjectForm"
           :model="createProjectFormData"
           :rules="createProjectFormRules"
           :label-col="createProjectLabelCol"
@@ -65,7 +65,11 @@
 
           <a-form-model-item label="翻译模型">
             <a-input-group compact>
-              <a-select v-model="createProjectFormData.fromLanguage" default-value="英文" style="width: 150px;">
+              <a-select
+                v-model="createProjectFormData.fromLanguage"
+                default-value="英文"
+                style="width: 150px;"
+              >
                 <a-select-option
                   v-for="language in TRANS_LANGUAGE"
                   :key="language"
@@ -77,7 +81,11 @@
                 placeholder=" -> "
                 disabled
               />
-              <a-select v-model="createProjectFormData.toLanguage" default-value="中文(简体)" style="width: 150px; border-left: 0">
+              <a-select
+                v-model="createProjectFormData.toLanguage"
+                default-value="中文(简体)"
+                style="width: 150px; border-left: 0"
+              >
                 <a-select-option
                   v-for="language in TRANS_LANGUAGE"
                   :key="language"
@@ -117,7 +125,7 @@ const TRANS_LANGUAGE = [
   "俄语",
   "德语",
   "印度语",
-  "意大利语",
+  "意大利语"
 ];
 
 export default {
@@ -140,14 +148,23 @@ export default {
         projectPermissionStatus: PERMISSION_STATUS.ALL_PUBLIC,
         teamId: this.teamId
       },
-      createProjectFormRules: {},
+      createProjectFormRules: {
+        projectName: [
+          { required: true, message: "项目名为必填项", trigger: "blur" },
+          { min: 3, message: "项目名长度最小为3", trigger: "change" },
+          { max: 16, message: "项目名长度超过限制", trigger: "change" }
+        ]
+      },
       createProjectLabelCol: { span: 6 },
       createProjectWrapperCol: { span: 16 },
       changeProjectPermissionTips: ""
     };
   },
-  created() {},
+  created() {
+    this.pageInit();
+  },
   methods: {
+    pageInit() {},
     //搜索项目的时候
     onSearch(text) {
       if (!text || text.trim() === "") return;
@@ -162,9 +179,37 @@ export default {
       this.createProjectVisible = false;
     },
     handleCreateProjectSubmit() {
-      //提交表单 TODO...
-      console.log(this.createProjectFormData)
-      this.createProjectVisible = false;
+      //提交表单
+      const form = this.$refs["createProjectForm"];
+      form.validate(valid => {
+        if (!valid) return;
+
+        TcProjectApi.createProject(this.createProjectFormData).then(res => {
+          if (!res.data.success) {
+            //提交失败
+
+            this.$message.error(res.data.msg);
+            return;
+          }
+          form.resetFields();
+
+          //还原最初的弹框选项
+          this.createProjectFormData = {
+            projectName: "",
+            projectProfile: "",
+            fromLanguage: "", //源语言
+            toLanguage: "", //新语言
+            projectType: 2,
+            projectPermissionStatus: PERMISSION_STATUS.ALL_PUBLIC,
+            teamId: this.teamId
+          };
+
+          //关闭弹框然后提示并刷新页面
+          this.createProjectVisible = false;
+          this.$message.success("创建项目成功!");
+          this.pageInit();
+        });
+      });
     },
     //弹框里的可见性被修改时触发
     changeProjectPermission(value) {

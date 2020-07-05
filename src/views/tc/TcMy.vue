@@ -198,6 +198,7 @@ export default {
             //提交失败
 
             this.$message.error(res.data.msg);
+            return;
           }
           form.resetFields();
           this.pageInit(); //重刷页面
