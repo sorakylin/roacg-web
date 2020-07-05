@@ -40,7 +40,7 @@
               <img
                 slot="cover"
                 :alt="team.teamName"
-                src="http://i2.hdslb.com/bfs/archive/066abed3b07c383ba0ab5e3615aef68865454c5e.jpg@412w_232h_1c_100q.jpg"
+                src="https://i.loli.net/2020/07/04/MJn8m9qwosVHEAb.jpg"
                 height="80px"
               />
               <a-card-meta>
