@@ -2,7 +2,7 @@
   <div>
     <a-row :gutter="[25,25]">
       <a-col :span="20">
-        <a-input-search placeholder="搜索项目" @search="onSearch" />
+        <a-input-search placeholder="输入名字搜索项目..." @search="onSearch" />
       </a-col>
       <a-col :span="4">
         <a-button
@@ -12,6 +12,32 @@
           新建项目
           <a-icon type="right" />
         </a-button>
+      </a-col>
+
+      <!-- 项目列表展示 -->
+      <a-col :span="24">
+        <a-list item-layout="vertical" size="large" :data-source="teamProjects">
+          <a-list-item slot="renderItem" key="project.projectId" slot-scope="project">
+            <!-- 项目名和项目备注 -->
+            <a-list-item-meta :description="project.projectProfile">
+              <div slot="title">
+                <a class="project-title">{{ project.projectName }}</a>
+              </div>
+            </a-list-item-meta>
+
+            <!-- 项目状态显示 -->
+            <div slot="extra">
+              <p style="font-size:10px; margin-top: 5px">
+                <span>
+                  {{project.fromLanguage}}
+                  <a-icon type="arrow-right" />
+                  {{project.toLanguage}}
+                </span>
+                <a-tag color="green" style="margin-left: 8px">{{project.statusDesc}}</a-tag>
+              </p>
+            </div>
+          </a-list-item>
+        </a-list>
       </a-col>
 
       <!-- 创建项目弹框 -->
@@ -104,29 +130,12 @@
 <script>
 // 组件
 import TcProjectApi from "@/api/tc/TcProjectApi";
+import { ProjectModel } from "@/api/tc/model/ProjectModel";
 
 //项目内容的隐私状态
-const PERMISSION_STATUS = {
-  ALL_PUBLIC: 1, //全公开的 (项目信息和具体文档)
-  INFO_PUBLIC: 2, //信息是公开的 (只能查看项目信息, 不能看到文档)
-  TEAM_PUBLIC: 3, //团队内全公开 (团队成员可以查看所有)
-  INFO_TEAM_PUBLIC: 4, //只在团队内公开信息 (团队成员只能查看项目信息)
-  ONLY_PARTICIPANT: 5 //仅参加者 (项目信息和具体文档只有项目参与者能看见)
-};
-
+const PERMISSION_STATUS = ProjectModel.PERMISSION_STATUS;
 //翻译的语言
-const TRANS_LANGUAGE = [
-  "中文(简体)",
-  "中文(繁体)",
-  "英语",
-  "日语",
-  "韩语",
-  "法语",
-  "俄语",
-  "德语",
-  "印度语",
-  "意大利语"
-];
+const TRANS_LANGUAGE = ProjectModel.TRANS_LANGUAGE;
 
 export default {
   name: "TcTeamDetailProject",
@@ -136,8 +145,8 @@ export default {
   },
   data() {
     return {
-      TRANS_LANGUAGE: TRANS_LANGUAGE,
-      PERMISSION_STATUS: PERMISSION_STATUS,
+      TRANS_LANGUAGE,
+      PERMISSION_STATUS,
       createProjectVisible: false,
       createProjectFormData: {
         projectName: "",
@@ -157,14 +166,30 @@ export default {
       },
       createProjectLabelCol: { span: 6 },
       createProjectWrapperCol: { span: 16 },
-      changeProjectPermissionTips: ""
+      changeProjectPermissionTips: "",
+      teamProjects: []
     };
   },
   created() {
     this.pageInit();
   },
   methods: {
-    pageInit() {},
+    pageInit() {
+      //渲染团队的项目
+      TcProjectApi.findTeamProjects(this.teamId).then(res => {
+        if (!res.data.success) {
+          return;
+        }
+
+        this.teamProjects = res.data.data;
+
+        //设置项目说明
+        this.teamProjects.forEach(
+          p =>
+            (p.statusDesc = ProjectModel.findProjectStatusDesc(p.projectStatus))
+        );
+      });
+    },
     //搜索项目的时候
     onSearch(text) {
       if (!text || text.trim() === "") return;
@@ -241,4 +266,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.project-title {
+  color: rgb(0, 0, 0, 0.65);
+  &:hover {
+    color: #436f8a;
+    border-bottom: 1px solid #436f8a;
+  }
+}
 </style>
