@@ -21,7 +21,10 @@
             <!-- 项目名和项目备注 -->
             <a-list-item-meta :description="project.projectProfile">
               <div slot="title">
-                <a class="project-title">{{ project.projectName }}</a>
+                <a
+                  class="project-title"
+                  :href="`/tc/project?pid=${project.projectId}`"
+                >{{ project.projectName }}</a>
               </div>
             </a-list-item-meta>
 

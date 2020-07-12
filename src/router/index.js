@@ -33,6 +33,9 @@ const routes = [{
   }, {
     path: '/tc/team-detail/:teamId',
     component: () => import('@/views/tc/team/TcTeamDetail')
+  }, {
+    path: '/tc/project',
+    component: () => import('@/views/tc/project/TcProjectDetail')
   }
 ]
 

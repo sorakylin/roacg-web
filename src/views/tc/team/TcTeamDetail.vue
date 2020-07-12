@@ -45,7 +45,7 @@
               <tc-team-detail-project :teamId="team.teamId" :projects="team.projects" />
             </a-row>
 
-            <a slot="tabBarExtraContent" href="#">设置</a>
+            <a slot="tabBarExtraContent" href="#">团队设置</a>
           </a-card>
 
           <!-- ==================================左边部分的团队菜单  END ==================================-->
