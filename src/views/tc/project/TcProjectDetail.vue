@@ -9,10 +9,11 @@
             :style="{ fontSize: '25px', color: '#233142' ,marginRight:'10px'}"
           />
           <a-breadcrumb-item>
-            <a href>团队名 or 用户名</a>
+            <a v-if="project.projectType == 1">{{project.createUserName}}</a>
+            <a v-else :href="`/tc/team-detail/${project.teamId}`">{{project.createTeamName}}</a>
           </a-breadcrumb-item>
           <a-breadcrumb-item>
-            <a href>项目名</a>
+            <a href>{{project.projectName}}</a>
           </a-breadcrumb-item>
         </a-breadcrumb>
       </a-row>
@@ -41,7 +42,7 @@
         </a-menu>
       </a-row>
 
-      <router-view></router-view>
+      <router-view :project="this.project"></router-view>
     </div>
   </default-layout>
 </template>
@@ -55,11 +56,24 @@ export default {
   data() {
     return {
       currentMenu: ["document"],
-      projectId: this.$route.params.pid
+      projectId: this.$route.params.pid,
+      project: {}
     };
   },
-  created() {},
-  methods: {}
+  created() {
+    this.projectInit();
+  },
+  methods: {
+    projectInit() {
+      TcProjectApi.findProjectDetail(this.projectId).then(res => {
+        if (!res.data.success) {
+          return;
+        }
+
+        this.project = res.data.data;
+      });
+    }
+  }
 };
 </script>
 

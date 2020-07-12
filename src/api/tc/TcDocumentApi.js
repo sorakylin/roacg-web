@@ -10,6 +10,12 @@ const createDir = function (parentId, dirName) {
     })
 }
 
+//查询指定节点下的子节点
+const findChildNodes = (parentId) => {
+    return tcApi.get(`/document/child-node/${parentId}`)
+}
+
 export default {
-    createDir
+    createDir,
+    findChildNodes
 }

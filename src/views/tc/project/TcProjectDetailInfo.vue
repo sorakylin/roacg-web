@@ -38,7 +38,12 @@
         <a-col :span="24">
           <h3>简介</h3>
         </a-col>
-        <a-col :span="24" class="team-profile" title="说明...." style="margin-bottom: 24px">说明....</a-col>
+        <a-col
+          :span="24"
+          class="team-profile"
+          title="说明...."
+          style="margin-bottom: 24px"
+        >{{this.project.projectProfile}}</a-col>
       </a-row>
     </a-col>
   </a-row>
@@ -51,10 +56,12 @@ import TcDocumentApi from "@/api/tc/TcDocumentApi";
 
 export default {
   name: "TcProjectDetailInfo",
+  props: ["project"],
   data() {
     return {
       projectId: this.$route.params.pid,
       currentNode: null,
+      documentNodes: [],
       createForm: {
         createDirName: ""
       }
@@ -66,10 +73,19 @@ export default {
     this.refreshTree();
   },
   methods: {
-    projectInfoInit() {},
+    projectInfoInit() {
+      console.log(this.project);
+    },
     //刷新文档树
     refreshTree() {
       // currentNode
+      TcDocumentApi.findChildNodes(this.currentNode).then(res => {
+        if (!res.data.success) {
+          return;
+        }
+
+        this.documentNodes = res.data.data;
+      });
     },
     //创建目录点击确定的回调
     createDirConfirm(e) {
