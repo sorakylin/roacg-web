@@ -40,6 +40,12 @@ module.exports = {
     loaderOptions: {
       //https://github.com/ant-design/ant-motion/issues/44 TODO 2020-0404 修复antd的陨石坑，操
       less: {
+        modifyVars: {//https://colorhunt.co/palette/66816
+          'primary-color': '#455d7a',
+          'link-color': '#455d7a',
+          'link-hover-color': '#f95959',
+          'link-active-color': '#f95959',
+        },
         javascriptEnabled: true,
       },
       // css: {

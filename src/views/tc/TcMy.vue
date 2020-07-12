@@ -20,7 +20,7 @@
     <a-col :span="16" style="height: 100%; border: 1px solod red">
       <a-card size="small" title="我的团队" :bordered="false">
         <a slot="extra" href="#" @click="showCreateTeamModal">创建团队</a>
-        <!-- 遍历我参与的所有项目, 展示 -->
+        <!-- 遍历我参与的所有团队, 展示 -->
         <a-col :span="8" v-for="team in this.myTeams" :key="team.teamId">
           <a-popover placement="right">
             <!-- 鼠标移上来的tip框 -->
@@ -162,7 +162,7 @@ export default {
       TcTeamsApi.findMyTeams()
         .then(res => {
           if (!res.data.success) {
-            this.$message.error(res.message);
+            this.$message.error(res.data.msg);
             return;
           }
 

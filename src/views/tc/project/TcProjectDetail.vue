@@ -2,7 +2,20 @@
   <default-layout>
     <div id="project-content">
       <!-- 顶上的面包屑 -->
-      <a-row type="flex" id="project-top"></a-row>
+      <a-row type="flex" id="project-top">
+        <a-breadcrumb style="font-size:25px; margin:0 auto">
+          <a-icon
+            type="project"
+            :style="{ fontSize: '25px', color: '#233142' ,marginRight:'10px'}"
+          />
+          <a-breadcrumb-item>
+            <a href>团队名 or 用户名</a>
+          </a-breadcrumb-item>
+          <a-breadcrumb-item>
+            <a href>项目名</a>
+          </a-breadcrumb-item>
+        </a-breadcrumb>
+      </a-row>
       <!-- 顶上的菜单 -->
       <a-row type="flex">
         <a-menu

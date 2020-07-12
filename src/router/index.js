@@ -16,7 +16,7 @@ const routes = [{
     path: '/register',
     component: () => import('@/views/Register')
   },
-  {
+  {//翻译协同
     path: '/tc',
     component: () => import('@/views/tc/TranslationCollaborationHome'),
     children: [{
@@ -33,11 +33,11 @@ const routes = [{
       component: () => import('@/views/tc/TcMy')
     }]
   },
-  {
+  {//团队详情
     path: '/tc/team-detail/:teamId',
     component: () => import('@/views/tc/team/TcTeamDetail')
   },
-  {
+  {//项目详情
     path: '/tc/project/:pid',
     component: () => import('@/views/tc/project/TcProjectDetail'),
     children: [{
