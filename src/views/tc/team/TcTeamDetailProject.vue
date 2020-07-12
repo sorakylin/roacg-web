@@ -23,7 +23,7 @@
               <div slot="title">
                 <a
                   class="project-title"
-                  :href="`/tc/project?pid=${project.projectId}`"
+                  :href="`/tc/project/${project.projectId}`"
                 >{{ project.projectName }}</a>
               </div>
             </a-list-item-meta>

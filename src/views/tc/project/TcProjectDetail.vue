@@ -11,33 +11,24 @@
           style="padding: 0 32px 0 32px;width: 100%;height: 50px;margin-bottom: 32px;"
         >
           <a-menu-item key="document">
-            <a-icon type="mail" />Navigation One
+            <router-link :to="`/tc/project/${this.projectId}`">
+              <a-icon type="profile" />项目
+            </router-link>
           </a-menu-item>
-          <a-menu-item key="app" disabled>
-            <a-icon type="appstore" />Navigation Two
+          <a-menu-item key="contributor">
+            <router-link :to="`/tc/project/${this.projectId}/contributor`">
+              <a-icon type="user" />贡献者
+            </router-link>
           </a-menu-item>
-          <a-sub-menu>
-            <span slot="title" class="submenu-title-wrapper">
-              <a-icon type="setting" />Navigation Three - Submenu
-            </span>
-            <a-menu-item-group title="Item 1">
-              <a-menu-item key="setting:1">Option 1</a-menu-item>
-              <a-menu-item key="setting:2">Option 2</a-menu-item>
-            </a-menu-item-group>
-            <a-menu-item-group title="Item 2">
-              <a-menu-item key="setting:3">Option 3</a-menu-item>
-              <a-menu-item key="setting:4">Option 4</a-menu-item>
-            </a-menu-item-group>
-          </a-sub-menu>
-          <a-menu-item key="alipay">
-            <a
-              href="https://antdv.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Navigation Four - Link</a>
+          <a-menu-item key="pendingAcceptance">
+            <router-link :to="`/tc/project/${this.projectId}/pending-acceptance`">
+              <a-icon type="exception" />待验收
+            </router-link>
           </a-menu-item>
         </a-menu>
       </a-row>
+
+      <router-view></router-view>
     </div>
   </default-layout>
 </template>
@@ -51,15 +42,11 @@ export default {
   data() {
     return {
       currentMenu: ["document"],
-      projectId: this.$route.query.pid
+      projectId: this.$route.params.pid
     };
   },
-  created() {
-    this.projectInfoInit();
-  },
-  methods: {
-    projectInfoInit() {}
-  }
+  created() {},
+  methods: {}
 };
 </script>
 

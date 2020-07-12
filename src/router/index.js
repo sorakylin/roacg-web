@@ -7,10 +7,12 @@ Vue.use(VueRouter)
 const routes = [{
     path: '/',
     component: () => import('@/views/Home')
-  }, {
+  },
+  {
     path: '/login',
     component: () => import('@/views/Login')
-  }, {
+  },
+  {
     path: '/register',
     component: () => import('@/views/Register')
   },
@@ -30,12 +32,24 @@ const routes = [{
       },
       component: () => import('@/views/tc/TcMy')
     }]
-  }, {
+  },
+  {
     path: '/tc/team-detail/:teamId',
     component: () => import('@/views/tc/team/TcTeamDetail')
-  }, {
-    path: '/tc/project',
-    component: () => import('@/views/tc/project/TcProjectDetail')
+  },
+  {
+    path: '/tc/project/:pid',
+    component: () => import('@/views/tc/project/TcProjectDetail'),
+    children: [{
+      path: '',
+      component: () => import('@/views/tc/project/TcProjectDetailInfo')
+    }, {
+      path: 'contributor',
+      component: () => import('@/views/tc/project/TcProjectDetailContributor')
+    }, {
+      path: 'pending-acceptance',
+      component: () => import('@/views/tc/project/TcProjectDetailPendingAcceptance')
+    }]
   }
 ]
 
