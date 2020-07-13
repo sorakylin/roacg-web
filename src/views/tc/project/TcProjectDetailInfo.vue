@@ -2,7 +2,8 @@
   <a-row type="flex" :gutter="[25,25]" style="width: 1200px; margin: 0 auto">
     <!-- 文档文件树 -->
     <a-col :span="20">
-      <a-card title="项目文档" style="min-height: 130px">
+      <a-card style="min-height: 130px" :bodyStyle="{'padding':0}">
+        <template slot="title">{{project.projectName}}</template>
         <a slot="extra">
           <a-dropdown placement="bottomRight">
             <a-button>
@@ -18,7 +19,7 @@
                   @confirm="createDirConfirm"
                   @visibleChange="createDirVisibleChange"
                 >
-                  <a-icon slot="icon" theme="filled" type="folder" style="color: #0fabbc" />
+                  <a-icon slot="icon" theme="filled" type="folder" style="color: #a8d8ea" />
                   <template slot="title">
                     <p>请输入目录名称:</p>
                     <input v-model="createForm.createDirName" placeholder="不超过 20 个字符" />
@@ -30,6 +31,25 @@
             </a-menu>
           </a-dropdown>
         </a>
+
+        <!-- 文档树渲染 color : https://colorhunt.co/palette/8328-->
+        <a-row v-for="doc in documentNodes" :key="doc.documentId" class="treeNode">
+          <template v-if="doc.documentType == 1">
+            <a-col :span="6">
+              <a-icon type="folder" theme="filled" style="color: #a8d8ea" />
+              <a href="javaScript:void(0)" style="margin-left: 16px">{{doc.documentName}}</a>
+            </a-col>
+            <a-col :span="18"></a-col>
+          </template>
+          <template v-if="doc.documentType == 2">
+            <a-col :span="6">
+              <a-icon type="file" />
+              <a href="javaScript:void(0)" style="margin-left: 16px">{{doc.documentName}}</a>
+            </a-col>
+            <a-col :span="12"></a-col>
+            <a-col :span="6">{{doc.updateTime}}</a-col>
+          </template>
+        </a-row>
       </a-card>
     </a-col>
     <!-- 侧边栏 -->
@@ -73,9 +93,7 @@ export default {
     this.refreshTree();
   },
   methods: {
-    projectInfoInit() {
-      console.log(this.project);
-    },
+    projectInfoInit() {},
     //刷新文档树
     refreshTree() {
       // currentNode
@@ -122,4 +140,27 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.treeNode {
+  padding: 16px;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+  margin-top: -1px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24292e;
+
+  & > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  &:hover {
+    background-color: #f6f8fa;
+  }
+}
 </style>
