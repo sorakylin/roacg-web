@@ -3,7 +3,21 @@
     <!-- 文档文件树 -->
     <a-col :span="20">
       <a-card style="min-height: 130px" :bodyStyle="{'padding':0}">
-        <template slot="title">{{project.projectName}}</template>
+        <!-- 面包屑, 标识文档路径 -->
+        <template slot="title">
+          <a-breadcrumb style="font-size:14px;">
+            <a-breadcrumb-item>
+              <a
+                @click="gotoFolder(project.projectId)"
+              >{{project.projectName}}</a>
+            </a-breadcrumb-item>
+            <a-breadcrumb-item v-for="node in currentChain" :key="node.documentId">
+              <a @click="gotoFolder(node.documentId)">{{node.documentName}}</a>
+            </a-breadcrumb-item>
+          </a-breadcrumb>
+        </template>
+        <!-- 文档路径面包屑结束 -->
+
         <a slot="extra">
           <a-dropdown placement="bottomRight">
             <a-button>
@@ -37,7 +51,7 @@
           <template v-if="doc.documentType == 1">
             <a-col :span="6">
               <a-icon type="folder" theme="filled" style="color: #a8d8ea" />
-              <a href="javaScript:void(0)" style="margin-left: 16px">{{doc.documentName}}</a>
+              <a @click="gotoFolder(doc.documentId)" style="margin-left: 16px">{{doc.documentName}}</a>
             </a-col>
             <a-col :span="18"></a-col>
           </template>
@@ -80,8 +94,10 @@ export default {
   data() {
     return {
       projectId: this.$route.params.pid,
-      currentNode: null,
-      documentNodes: [],
+      currentNode: null, //当前节点的ID
+      currentChain: [],//从根节点到当前节点的路径
+      nodeLinkedList: [], //节点链表, 标识了从根节点到当前节点的关系
+      documentNodes: [], //渲染出来的文档页面信息
       createForm: {
         createDirName: ""
       }
@@ -103,6 +119,14 @@ export default {
         }
 
         this.documentNodes = res.data.data;
+      });
+      //面包屑构造
+      TcDocumentApi.findNodeChain(this.currentNode).then(res => {
+        if (!res.data.success) {
+          return;
+        }
+
+        this.currentChain = res.data.data;
       });
     },
     //创建目录点击确定的回调
@@ -134,6 +158,11 @@ export default {
       if (visible) {
         this.createForm.createDirName = "";
       }
+    },
+    //进入文件夹
+    gotoFolder(nodeId) {
+      this.currentNode = nodeId;
+      this.refreshTree();
     }
   }
 };
@@ -162,5 +191,13 @@ export default {
   &:hover {
     background-color: #f6f8fa;
   }
+}
+
+.linelimit{
+  overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
 }
 </style>

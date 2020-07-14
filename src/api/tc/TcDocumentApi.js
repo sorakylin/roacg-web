@@ -12,10 +12,24 @@ const createDir = function (parentId, dirName) {
 
 //查询指定节点下的子节点
 const findChildNodes = (parentId) => {
-    return tcApi.get(`/document/child-node/${parentId}`)
+    return tcApi.get(`/document/child-node`, {
+        params: {
+            "nodeId": parentId
+        }
+    })
+}
+
+//查询从根节点到当前节点的关系
+const findNodeChain = (nodeId) => {
+    return tcApi.get(`/document/chain`, {
+        params: {
+            "nodeId": nodeId
+        }
+    })
 }
 
 export default {
     createDir,
-    findChildNodes
+    findChildNodes,
+    findNodeChain
 }
